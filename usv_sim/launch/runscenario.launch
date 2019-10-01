@@ -2,12 +2,12 @@
 <launch>
 
 	<arg name="gui" default="false"/>
-	<arg name="parse" default="false"/>
+	<arg name="PARSE" default="false"/>
     <arg name="usvType" default="airboat"/>
     <arg name="scenario" default="scenario1"/>
 
     <!-- spawn uwsim -->
-	<group unless="$(arg parse)">
+	<group unless="$(arg PARSE)">
 		<arg name="disableShaders" default="false"/>
         <arg name="namespace" value="$(arg usvType)"/>  
         <arg name="spawnGazebo" default="true"/>
@@ -27,7 +27,7 @@
 		
 		
 
-		<!-- using parser  -->
+		<!-- using PARSEr  -->
 		<include file="$(find usv_sim)/launch/runscenario_spawner.launch"/>
 
 		<include file="$(find usv_sim)/launch/models/spawn_$(arg usvType).launch">
@@ -37,8 +37,8 @@
         </include>
 	</group>
 
-	<!-- parse launch file -->
-	<group if="$(arg parse)">
+	<!-- PARSE launch file -->
+	<group if="$(arg PARSE)">
 		<node name="scene_to_spawner" pkg="freefloating_gazebo" type="uwsim_scene_to_gazebo_spawner.py" args="$(find usv_sim)/launch/runscenario.launch" output="screen" required="true"/>
 	</group>
 

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mr1_base_frame">
+  
+  <xacro:property name="beam_length" value="0.6" />
+  <xacro:property name="beam_radius" value="0.055" />
+  <xacro:property name="base_cube_length" value="0.12" />
+  <xacro:property name="beam_to_hull_length" value="0.1778" />
+  <xacro:property name="ninety_degrees" value="1.57075" />
+  
+    
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${base_cube_length} ${base_cube_length} ${base_cube_length}"/>
+      </geometry>
+      <origin rpy="0 0 0 " xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name="right_beam">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_length}"/>
+      </geometry>
+      <!-- rotate beam 90 degrees -->
+      <origin rpy="0 ${ninety_degrees} 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_leg" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_beam"/>
+    <origin xyz="${(beam_length/2)+(base_cube_length/2)} 0 0"/>
+  </joint>
+
+  <link name="left_beam">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_length}"/>
+      </geometry>
+      <origin rpy="0 ${ninety_degrees} 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_beam" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_beam"/>
+    <origin xyz="${-((beam_length/2)+(base_cube_length/2))} 0 0"/>
+  </joint>
+
+ <link name="left_beam_attachment">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_to_hull_length}"/>
+      </geometry>
+      <!--origin z offset = length/2 -->
+      <origin rpy="0 0 0" xyz="0 0 ${-beam_to_hull_length/2}"/>
+    </visual>
+  </link>
+
+  <joint name="left_beam_to_attachment" type="fixed">
+    <parent link="left_beam"/>
+    <child link="left_beam_attachment"/>
+    <!--origin x offset = beam_length/2 -radius -->
+    <origin xyz="-0.25 0 0"/>
+  </joint>
+
+ <link name="right_beam_attachment">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_to_hull_length}"/>
+      </geometry>
+      <!--origin z offset = length/2 -->
+      <origin rpy="0 0 0" xyz="0 0 ${-beam_to_hull_length/2}"/>
+    </visual>
+  </link>
+
+  <joint name="right_beam_to_attachment" type="fixed">
+    <parent link="right_beam"/>
+    <child link="right_beam_attachment"/>
+    <!--origin x offset = beam_length/2 -radius -->
+    <origin xyz="0.25 0 0"/>
+  </joint>
+
+</robot>

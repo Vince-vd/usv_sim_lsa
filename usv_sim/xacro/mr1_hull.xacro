@@ -42,22 +42,22 @@
             <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="1.4" iyz="0.0" izz="1.4"/>
           </inertial>
           <buoyancy>
-        <compensation>${middle_water_displaced_mass/middle_body_mass}</compensation>
-        <origin xyz="${0.35*scale} ${0.44*scale} ${-0.15*scale}"/>
-        <limit radius="0.1"/>
-        <damping rpy="20 20 20" xyz="20 40 50"/>
+            <compensation>${middle_water_displaced_mass/middle_body_mass}</compensation>
+            <origin xyz="${0.35*scale} ${0.44*scale} ${-0.15*scale}"/>
+            <limit radius="0.1"/>
+            <damping rpy="20 20 20" xyz="20 40 50"/>
             <windVelocity>${windType}</windVelocity>
-        <frontal_area>0.0</frontal_area>
-        <lateral_area>0.06</lateral_area>
-        <lateral_length>1.2</lateral_length>
-          <waterVelocity>${waterType}</waterVelocity>
+            <frontal_area>0.0</frontal_area>
+            <lateral_area>0.06</lateral_area>
+            <lateral_length>1.2</lateral_length>
+            <waterVelocity>${waterType}</waterVelocity>
           </buoyancy>
       </link>
 
       <joint name="${name}_r_base_frame_join" type="fixed">
         <parent link="${parentLink}"/>
         <child link="${name}_center_l_link"/>
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 0"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 -0.2"/>
       </joint>
 
       

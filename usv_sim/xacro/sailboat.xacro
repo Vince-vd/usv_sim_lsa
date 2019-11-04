@@ -129,7 +129,8 @@
 		  <fluid_density>1000</fluid_density>
 		  <forward>1 0 0</forward>
 		  <upward>0 1 0</upward>
-		  <link_name>keel</link_name>
+	        <limit effort="100" velocity="70" lower="-${PI}" upper="${PI}" />
+	  <link_name>keel</link_name>
 		  <fluidVelocity>${waterType}</fluidVelocity>
     </plugin>
     

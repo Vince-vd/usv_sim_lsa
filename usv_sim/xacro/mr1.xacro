@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mr1">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sailboat">
     <xacro:arg name="windType" default="global" />
     <xacro:arg name="waterType" default="global" />
     <xacro:property name="windType" value="$(arg windType)" />
     <xacro:property name="waterType" value="$(arg waterType)" />
     
     <xacro:property name="windType" value="global"/>
+    <xacro:include filename="$(find usv_sim)/xacro/mr1_left_hull.xacro" />
     <xacro:include filename="$(find usv_sim)/xacro/mr1_base_frame.xacro" />
     <xacro:include filename="$(find usv_sim)/xacro/mr1_right_hull.xacro" />
-    <xacro:include filename="$(find usv_sim)/xacro/mr1_left_hull.xacro" />
 
     <joint name="right_hull_joint" type="fixed">
         <parent link="right_beam_attachment"/>
         <child link="center_r_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 0"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="${-0.44*scale} 0 ${-0.8*scale}"/>
     </joint>
 
     <joint name="left_hull_joint" type="fixed">
         <parent link="left_beam_attachment"/>
         <child link="base_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 0"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="${0.44*scale} 0 ${-0.8*scale}"/>
     </joint>
 
 </robot>

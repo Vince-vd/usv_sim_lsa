@@ -9,7 +9,7 @@
   <xacro:property name="ninety_degrees" value="1.57075" />
   
     
-  <link name="base_link">
+  <link name="base_cube">
     <visual>
       <geometry>
         <box size="${base_cube_length} ${base_cube_length} ${base_cube_length}"/>
@@ -50,7 +50,7 @@
   </link>
 
   <joint name="base_to_right_leg" type="fixed">
-    <parent link="base_link"/>
+    <parent link="base_cube"/>
     <child link="right_beam"/>
     <origin xyz="${(beam_length/2)+(base_cube_length/2)} 0 0"/>
   </joint>
@@ -75,7 +75,7 @@
   </link>
 
   <joint name="base_to_left_beam" type="fixed">
-    <parent link="base_link"/>
+    <parent link="base_cube"/>
     <child link="left_beam"/>
     <origin xyz="${-((beam_length/2)+(base_cube_length/2))} 0 0"/>
   </joint>

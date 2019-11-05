@@ -5,7 +5,7 @@
   <xacro:property name="beam_length" value="0.6" />
   <xacro:property name="beam_radius" value="0.055" />
   <xacro:property name="base_cube_length" value="0.12" />
-  <xacro:property name="beam_to_hull_length" value="0.1778" />
+  <xacro:property name="beam_to_hull_length" value="0.0889" />
   <xacro:property name="ninety_degrees" value="1.57075" />
   
     
@@ -27,6 +27,31 @@
       <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
     </inertial>
   </link>
+
+  <link name="rear_beam">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_length}"/>
+      </geometry>
+      <origin rpy="${ninety_degrees} 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_length}"/>
+      </geometry>
+      <origin rpy="${ninety_degrees} 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <joint name="base_to_rear_beam" type="fixed">
+    <parent link="base_cube"/>
+    <child link="rear_beam"/>
+    <origin xyz="0 ${-(beam_length/2)+(base_cube_length/2)} 0"/>
+  </joint>
 
   <link name="right_beam">
     <visual>
@@ -135,5 +160,77 @@
     <!--origin x offset = beam_length/2 -radius -->
     <origin xyz="0.25 0 0"/>
   </joint>
+
+ <link name="rudder_attachment">
+    <visual>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_to_hull_length}"/>
+      </geometry>
+      <!--origin z offset = length/2 -->
+      <origin rpy="0 0 0" xyz="0 0 ${-beam_to_hull_length/2}"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${beam_radius}" length="${beam_to_hull_length}"/>
+      </geometry>
+      <!--origin z offset = length/2 -->
+      <origin rpy="0 0 0" xyz="0 0 ${-beam_to_hull_length/2}"/>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <joint name="rear_beam_to_attachment" type="fixed">
+    <parent link="rear_beam"/>
+    <child link="rudder_attachment"/>
+    <!--origin x offset = beam_length/2 -radius -->
+    <origin xyz="0 -0.25 0"/>
+  </joint>
+
+
+  <!-- Rudder link -->
+    <xacro:macro name="rudder_xacro">
+        <link name="rudder">
+            <inertial>
+                <mass value="1" />
+                <inertia
+                  ixx="0.05"
+                  ixy="0.0"
+                  iyy="0.05"
+                  ixz="0.0"
+                  iyz="0.0"
+                  izz="0.005"/>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                  <box size="${0.2*scale} ${0.02*scale} ${0.3*scale}" />
+                </geometry>
+                <origin rpy="0 0 0" xyz="${-0.1*scale} 0 0"/>
+            </collision>
+
+            <visual name="visual">
+                <geometry>
+                
+                  <mesh filename="package://usv_sim/meshes/simpleHull3/box.dae" scale="${0.2*scale} ${0.02*scale} ${0.3*scale}"/>
+                  
+                </geometry>
+                <origin rpy="0 0 0" xyz="${-0.1*scale} 0 0"/>
+                
+            </visual>
+
+        </link>
+
+        <joint name="rudder_joint" type="revolute">
+            <parent link="rudder_attachment"/>
+            <child link="rudder"/>
+            <origin rpy="0 0 0" xyz="0 0 ${-1.5*scale}"/>
+            <dynamics damping="1.0"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="100" velocity="5" lower="-${PI/2}" upper="${PI/2}" />
+        </joint>
+    </xacro:macro> 
 
 </xacro>

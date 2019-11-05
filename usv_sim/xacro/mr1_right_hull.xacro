@@ -89,7 +89,7 @@
     <joint name="back_r_joint" type="revolute">
         <parent link="center_r_link"/>
         <child link="back_r_link"/>
-        <origin rpy="0 0 0" xyz="${-0.5*scale} ${0.39*scale} 0"/>
+        <origin rpy="0 0 0" xyz="${-0.5*scale} ${-0.39*scale} 0"/>
 	<limit effort="50" velocity="5" lower="0" upper="0" />
             <dynamics damping="1.0"/>
             <axis xyz="1 0 0"/>
@@ -132,7 +132,7 @@
     <joint name="front_r_joint" type="revolute">
         <parent link="center_r_link"/>
         <child link="front_r_link"/>
-        <origin rpy="0 0 0" xyz="${1.3*scale} ${0.2*scale} 0"/>
+        <origin rpy="0 0 0" xyz="${1.3*scale} ${-0.2*scale} 0"/>
 	<limit effort="50" velocity="5" lower="0" upper="0" />
             <dynamics damping="1.0"/>
             <axis xyz="1 0 0"/>

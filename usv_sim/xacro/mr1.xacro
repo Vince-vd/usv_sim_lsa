@@ -76,10 +76,46 @@
     <joint name="sail_joint" type="revolute">
         <parent link="base_cube"/>
         <child link="sail"/>
-        <origin rpy="0 0 0" xyz="0 0 ${scale*0.2}"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${scale*0.2}"/>
         <dynamics damping="1.0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100" velocity="70" lower="-${PI}" upper="${PI}" />
+    </joint>
+
+    <link name="keel">
+        <inertial>
+            <mass value="30" />
+            <inertia
+            ixx="0.4708"
+            ixy="0.0"
+            iyy="0.5208"
+            ixz="0.0"
+            iyz="0.0"
+            izz="0.0508"/>
+        </inertial>
+        <collision name="collision">
+            <geometry>
+                <box size="0.12 0.02 0.5" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            
+        </collision>
+
+        <visual name="visual">
+            <geometry>
+                <mesh filename="package://usv_sim/meshes/simpleHull3/box.dae" scale="0.12 0.02 0.5"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+    </link>
+
+    <joint name="keel_joint" type="revolute">
+        <parent link="base_cube"/>
+        <child link="keel"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 -0.35"/>
+        <dynamics damping="1.0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="30" velocity="5" lower="0" upper="0" />
     </joint>
 
 
@@ -107,23 +143,41 @@
       </plugin>
 
 
-      <plugin name="usv_sail_plugin" filename="libfoil_dynamics_plugin.so">
-	<link_type>rudder</link_type>
-	<a0>0</a0>
-	<cla>0.8</cla>
-	<cda>0.3</cda>
-	<alpha_stall>0.785</alpha_stall>
-	<cla_stall>-0.85</cla_stall>
-	<cda_stall>-0.3233984055</cda_stall>
+    <plugin name="usv_sail_plugin" filename="libfoil_dynamics_plugin.so">
+        <link_type>rudder</link_type>
+        <a0>0</a0>
+        <cla>0.8</cla>
+        <cda>0.3</cda>
+        <alpha_stall>0.785</alpha_stall>
+        <cla_stall>-0.85</cla_stall>
+        <cda_stall>-0.3233984055</cda_stall>
 
-	<cp>0 0 0</cp>
-	<area>1</area>
-	<fluid_density>1000</fluid_density>
-	<forward>1 0 0</forward>
-	<upward>0 1 0</upward>
-	<link_name>rudder</link_name>
-	<fluidVelocity>${waterType}</fluidVelocity>
-      </plugin>
+        <cp>0 0 0</cp>
+        <area>1</area>
+        <fluid_density>1000</fluid_density>
+        <forward>1 0 0</forward>
+        <upward>0 1 0</upward>
+        <link_name>rudder</link_name>
+        <fluidVelocity>${waterType}</fluidVelocity>
+    </plugin>
+
+    <plugin name="usv_sail_plugin" filename="libusv_sailing_plugin.so">
+		  <link_type>keel</link_type>
+		  <a0>0</a0>
+		  <cla>10.0</cla>
+		  <cda>8.0</cda>
+		  <alpha_stall>0.785</alpha_stall>
+		  <cla_stall>-10.0</cla_stall>
+		  <cda_stall>-5.0</cda_stall>
+		  <cp>0 0 0</cp>
+		  <area>1.0</area>
+		  <fluid_density>1000</fluid_density>
+		  <forward>1 0 0</forward>
+		  <upward>0 1 0</upward>
+            <limit effort="100" velocity="70" lower="-${PI}" upper="${PI}" />
+	  <link_name>keel</link_name>
+		  <fluidVelocity>${waterType}</fluidVelocity>
+    </plugin>  
       
 
       <plugin name="freefloating_gazebo_control" filename="libfreefloating_gazebo_control.so">

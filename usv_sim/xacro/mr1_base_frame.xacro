@@ -208,7 +208,7 @@
                 <geometry>
                   <box size="${0.2*scale} ${0.02*scale} ${0.3*scale}" />
                 </geometry>
-                <origin rpy="0 0 0" xyz="${-0.1*scale} 0 0"/>
+                <origin rpy="0 0 0" xyz="${-0.2*scale} 0 0"/>
             </collision>
 
             <visual name="visual">
@@ -217,7 +217,7 @@
                   <mesh filename="package://usv_sim/meshes/simpleHull3/box.dae" scale="${0.2*scale} ${0.02*scale} ${0.3*scale}"/>
                   
                 </geometry>
-                <origin rpy="0 0 0" xyz="${-0.1*scale} 0 0"/>
+                <origin rpy="0 0 0" xyz="${-0.2*scale} 0 0"/>
                 
             </visual>
 
@@ -226,7 +226,7 @@
         <joint name="rudder_joint" type="revolute">
             <parent link="rudder_attachment"/>
             <child link="rudder"/>
-            <origin rpy="0 0 0" xyz="0 0 ${-1.5*scale}"/>
+            <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${-1.2*scale}"/>
             <dynamics damping="1.0"/>
             <axis xyz="0 0 1"/>
             <limit effort="100" velocity="5" lower="-${PI/2}" upper="${PI/2}" />

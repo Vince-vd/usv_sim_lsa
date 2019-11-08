@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Hull, Back">
+  <link
+    name="Hull, Back">
+    <inertial>
+      <origin
+        xyz="-0.55395 -9.49220000000195E-06 -0.031774"
+        rpy="0 0 0" />
+      <mass
+        value="3.333" />
+      <inertia
+        ixx="0.22991"
+        ixy="-2.0064999999998E-05"
+        ixz="-0.032423"
+        iyy="1.3348"
+        iyz="-4.95610000000025E-05"
+        izz="1.2943" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hull, Back/meshes/Hull, Back.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+        <texture
+          filename="package://Hull, Back/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hull, Back/meshes/Hull, Back.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

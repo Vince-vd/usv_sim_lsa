@@ -5,7 +5,7 @@
   <xacro:property name="beam_length" value="0.6" />
   <xacro:property name="beam_radius" value="0.055" />
   <xacro:property name="base_cube_length" value="0.12" />
-  <xacro:property name="beam_to_hull_length" value="0.0889" />
+  <xacro:property name="beam_to_hull_length" value="0.254" />
   <xacro:property name="ninety_degrees" value="1.57075" />
   
     
@@ -14,13 +14,13 @@
       <geometry>
         <box size="${base_cube_length} ${base_cube_length} ${base_cube_length}"/>
       </geometry>
-      <origin rpy="0 0 0 " xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
         <box size="${base_cube_length} ${base_cube_length} ${base_cube_length}"/>
       </geometry>
-      <origin rpy="0 0 0 " xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
     <inertial>
       <mass value="1"/>
@@ -206,7 +206,7 @@
 
             <collision name="collision">
                 <geometry>
-                  <box size="${0.2*scale} ${0.02*scale} ${0.3*scale}" />
+                  <box size="${0.2*scale} ${0.02*scale} ${0.6*scale}" />
                 </geometry>
                 <origin rpy="0 0 0" xyz="${-0.2*scale} 0 0"/>
             </collision>
@@ -214,7 +214,7 @@
             <visual name="visual">
                 <geometry>
                 
-                  <mesh filename="package://usv_sim/meshes/simpleHull3/box.dae" scale="${0.2*scale} ${0.02*scale} ${0.3*scale}"/>
+                  <mesh filename="package://usv_sim/meshes/simpleHull3/box.dae" scale="${0.2*scale} ${0.02*scale} ${0.6*scale}"/>
                   
                 </geometry>
                 <origin rpy="0 0 0" xyz="${-0.2*scale} 0 0"/>
@@ -226,10 +226,11 @@
         <joint name="rudder_joint" type="revolute">
             <parent link="rudder_attachment"/>
             <child link="rudder"/>
-            <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${-1.2*scale}"/>
+            <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${-0.6*scale}"/>
+<!--            <origin rpy="0 0 ${ninety_degrees" xyz="0 0 ${-0.6*scale}"/-->
             <dynamics damping="1.0"/>
             <axis xyz="0 0 1"/>
-            <limit effort="100" velocity="5" lower="-${PI/2}" upper="${PI/2}" />
+            <limit effort="100" velocity="5" lower="-${PI/4}" upper="${PI/4}" />
         </joint>
     </xacro:macro> 
 

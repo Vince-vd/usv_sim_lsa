@@ -5,12 +5,12 @@
   <!--MR1 BASE LINK-->
   <link name="base_link">
     <inertial>
-      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 0" />
+      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 ${-ninety_degrees}" />
       <mass value="${3.333*scale}" />
       <inertia ixx="0.61191" ixy="6.46809999999998E-05" ixz="0.0040806" iyy="3.5097" iyz="1.36870000000023E-05" izz="3.5471" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Middle.STL" />
       </geometry>
@@ -19,14 +19,14 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Middle.STL" />
       </geometry>
     </collision>
     <buoyancy>
       <compensation>${middle_water_displaced_mass/middle_body_mass}</compensation>
-      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 0"/>
+      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 ${-ninety_degrees}"/>
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>
@@ -40,12 +40,12 @@
   <!--MR1 BACK LINK-->
   <link name="back_l_link">
     <inertial>
-      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}" rpy="0 0 0" />
+      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}" rpy="0 0 ${-ninety_degrees}" />
       <mass value="${3.333*scale}" />
       <inertia ixx="0.22991" ixy="-2.0064999999998E-05" ixz="-0.032423" iyy="1.3348" iyz="-4.95610000000025E-05" izz="1.2943" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Back.STL" />
       </geometry>
@@ -54,14 +54,14 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Back.STL" />
       </geometry>
     </collision>
     <buoyancy>
       <compensation>${back_water_displaced_mass/back_body_mass}</compensation>
-      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}"/>
+      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}"rpy="0 0 ${-ninety_degrees}"/>
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>
@@ -84,12 +84,12 @@
   <!--MR1 FRONT LINK-->
   <link name="front_l_link">
     <inertial>
-      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 0" />
+      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 ${-ninety_degrees}" />
       <mass value="${3.333*scale}" />
       <inertia ixx="0.1729" ixy="1.57389999997978E-07" ixz="0.033027" iyy="1.1311" iyz="3.95489999997434E-07" izz="1.0892" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Front.STL" />
       </geometry>
@@ -98,14 +98,14 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+      <origin xyz="0 0 0" rpy="1.5707963267949 0 ${-ninety_degrees}" />
       <geometry>
         <mesh filename="package://usv_sim/meshes/Hull-Front.STL" />
       </geometry>
     </collision>
     <buoyancy>
       <compensation>${front_water_displaced_mass/front_body_mass}</compensation>
-      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 0" />
+      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 ${-ninety_degrees}" />
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>

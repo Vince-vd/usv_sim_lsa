@@ -22,8 +22,8 @@
     <xacro:property name="waterType" value="$(arg waterType)" />
 
     <xacro:property name="windType" value="global"/>
+    <xacro:include filename="$(find usv_sim)/xacro/mr1_base_frame.xacro" />     
     <xacro:include filename="$(find usv_sim)/xacro/mr1_left_hull.xacro" />
-    <xacro:include filename="$(find usv_sim)/xacro/mr1_base_frame.xacro" />
     <xacro:include filename="$(find usv_sim)/xacro/mr1_right_hull.xacro" />
 
     <xacro:rudder_xacro />
@@ -31,13 +31,13 @@
     <joint name="right_hull_joint" type="fixed">
         <parent link="right_beam_attachment"/>
         <child link="center_r_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 ${1.2*scale} ${-beam_to_hull_length}"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="${1.2*scale} 0 ${-beam_to_hull_length}"/>
     </joint>
 
     <joint name="left_hull_joint" type="fixed">
         <parent link="left_beam_attachment"/>
         <child link="base_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 ${1.2*scale} ${-beam_to_hull_length}"/>
+        <origin rpy="0 0 ${ninety_degrees}" xyz="${1.2*scale} 0 ${-beam_to_hull_length}"/>
     </joint>
 
     <!-- Defining sail model -->
@@ -70,7 +70,7 @@
     <joint name="sail_joint" type="revolute">
         <parent link="base_cube"/>
         <child link="sail"/>
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${scale*0.2}"/>
+        <origin rpy="0 0 0" xyz="0 0 ${scale*0.2}"/>
         <dynamics damping="1.0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100" velocity="70" lower="-${PI}" upper="${PI}" />
@@ -100,7 +100,7 @@
     <joint name="keel_joint" type="revolute">
         <parent link="base_cube"/>
         <child link="keel"/>
-        <origin rpy="0 0 ${ninety_degrees}" xyz="0 0 ${-0.6*scale}"/>
+        <origin rpy="0 0 0" xyz="0 0 ${-0.6*scale}"/>
         <dynamics damping="1.0"/>
         <axis xyz="0 0 1"/>
         <limit effort="30" velocity="5" lower="0" upper="0" />
@@ -148,6 +148,7 @@
             <link_name>rudder</link_name>
             <fluidVelocity>${waterType}</fluidVelocity>
         </plugin>
+
 
         <plugin name="usv_sail_plugin" filename="libfoil_dynamics_plugin.so">
             <link_type>keel</link_type>

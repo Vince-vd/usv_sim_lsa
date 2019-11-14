@@ -22,7 +22,7 @@
     <xacro:property name="waterType" value="$(arg waterType)" />
 
     <xacro:property name="windType" value="global"/>
-    <xacro:include filename="$(find usv_sim)/xacro/mr1_base_frame.xacro" />     
+    <xacro:include filename="$(find usv_sim)/xacro/mr1_base_frame.xacro" />
     <xacro:include filename="$(find usv_sim)/xacro/mr1_left_hull.xacro" />
     <xacro:include filename="$(find usv_sim)/xacro/mr1_right_hull.xacro" />
 
@@ -31,13 +31,13 @@
     <joint name="right_hull_joint" type="fixed">
         <parent link="right_beam_attachment"/>
         <child link="center_r_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="${1.2*scale} 0 ${-beam_to_hull_length}"/>
+        <origin rpy="0 0 ${PI}" xyz="${-1.2*scale} 0 ${-beam_to_hull_length}"/>
     </joint>
 
     <joint name="left_hull_joint" type="fixed">
         <parent link="left_beam_attachment"/>
         <child link="base_link" />
-        <origin rpy="0 0 ${ninety_degrees}" xyz="${1.2*scale} 0 ${-beam_to_hull_length}"/>
+        <origin rpy="0 0 ${PI}" xyz="${-1.2*scale} 0 ${-beam_to_hull_length}"/>
     </joint>
 
     <!-- Defining sail model -->
@@ -109,7 +109,6 @@
 
     <!-- Plugin list -->
     <gazebo>
-
         <plugin name="usv_sail_plugin" filename="libfoil_dynamics_plugin.so">
             <link_type>sail</link_type>
             <a0>0</a0>
@@ -129,7 +128,6 @@
             <link_name>sail</link_name>
             <fluidVelocity>${windType}</fluidVelocity>
         </plugin>
-
 
         <plugin name="usv_sail_plugin" filename="libfoil_dynamics_plugin.so">
             <link_type>rudder</link_type>

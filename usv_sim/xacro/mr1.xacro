@@ -44,35 +44,33 @@
 
     <link name="sail">
         <inertial>
-            <origin rpy="0 0 0" xyz="-0.3 0 0.4"/>
-            <mass value="1" />
-            <inertia ixx="0.4708" ixy="0.0" iyy="0.5208" ixz="0.0" iyz="0.0" izz="0.0508"/>
+            <origin xyz="0.90666 0.1166 -1.75660000000071E-05" rpy="0 0 0" />
+            <mass value="5.1671" />
+            <inertia ixx="0.1332" ixy="-0.12422" ixz="0.000254509999999992" iyy="1.4044" iyz="-1.91999999999932E-05" izz="1.5154" />
         </inertial>
-
-        <collision name="collision">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
             <geometry>
-                <mesh filename="package://usv_sim/meshes/simpleHull3/sail.dae" scale="0.5 0.5 0.5"/>
+                <mesh filename="package://usv_sim/meshes/sail.STL" />
             </geometry>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-        </collision>
-
-        <visual name="visual">
-
-            <geometry>
-
-                <mesh filename="package://usv_sim/meshes/simpleHull3/sail.dae" scale="0.5 0.5 0.5"/>
-            </geometry>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1" />
+            </material>
         </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+            <geometry>
+                <mesh filename="package://usv_sim/meshes/sail.STL" />
+            </geometry>
+        </collision>
     </link>
-
 
     <joint name="sail_joint" type="revolute">
         <parent link="base_cube"/>
         <child link="sail"/>
-        <origin rpy="0 0 0" xyz="0 0 ${scale*0.2}"/>
+        <origin rpy="${-ninety_degrees} ${-ninety_degrees} ${PI}" xyz="0 0 ${scale*0.05}"/>
         <dynamics damping="1.0"/>
-        <axis xyz="0 0 1"/>
+        <axis xyz="1 0 0"/>
         <limit effort="100" velocity="70" lower="-${PI}" upper="${PI}" />
     </joint>
 

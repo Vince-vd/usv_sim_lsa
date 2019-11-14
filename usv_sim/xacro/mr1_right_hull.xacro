@@ -26,7 +26,7 @@
     </collision>
     <buoyancy>
       <compensation>${middle_water_displaced_mass/middle_body_mass}</compensation>
-      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 ${-ninety_degrees}"/>
+      <origin xyz="${-1.2619*scale} ${-1.71630000002334E-07*scale} ${-0.038115*scale}" rpy="0 0 0"/>
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>
@@ -61,7 +61,7 @@
     </collision>
     <buoyancy>
       <compensation>${back_water_displaced_mass/back_body_mass}</compensation>
-      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}" rpy="0 0 ${-ninety_degrees}"/>
+      <origin xyz="${-0.55395*scale} ${-9.49220000000195E-06*scale} ${-0.031774*scale}" rpy="0 0 0"/>
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>
@@ -105,7 +105,7 @@
     </collision>
     <buoyancy>
       <compensation>${front_water_displaced_mass/front_body_mass}</compensation>
-      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 ${-ninety_degrees}" />
+      <origin xyz="${-1.9778*scale} ${4.47239999998292E-07*scale} ${-0.027892*scale}" rpy="0 0 0" />
       <limit radius="0.1"/>
       <damping rpy="20 20 20" xyz="20 40 50"/>
       <windVelocity>${windType}</windVelocity>
